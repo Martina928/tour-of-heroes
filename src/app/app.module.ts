@@ -8,6 +8,7 @@ import { DashboardComponent } from './content/dashboard/dashboard.component';
 import { HeroesComponent } from './content/heroes/heroes.component';
 import { HomeComponent } from './content/home/home.component';
 import { DetailComponent } from './content/detail/detail.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { DetailComponent } from './content/detail/detail.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

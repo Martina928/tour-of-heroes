@@ -12,15 +12,11 @@
             <a class="nav-link" [ngClass]="{'active': router.isActive(item.router, true)}" (click)="onMenuClick(item.router)">{{item.label}}</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary" type="submit">Search</button>
-        </form>
       </div>
     </div>
   </nav>
 
-  <body class="container mt-4">
+  <body class="container mt-5">
     <router-outlet></router-outlet>
   </body>
 </div>
