@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+@import "custom-setting.scss";
+/** bootstrap custom setting start */
+$primary: $primary-color;
+$secondary: $secondary-color;
+$danger: $danger-color;
+$success: $success-color;
+$warning: $warn-color;
+$light: $third-color;
+$navbar-light-color: $gray-600;
+$navbar-light-brand-color: $primary-color;
+$navbar-light-active-color: $primary-color;
+
+/* Importing Bootstrap SCSS file. */
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@font-face {
+  font-family: 'Readex Pro';
+  src: url('./assets/font/ReadexPro-VariableFont_HEXP\,wght.ttf');
+}
+
+* {
+  font-family: "Readex Pro", "Microsoft JhengHei";
+}
+
+@each $type,
+$color in $color-grays {
+  .text-gray-#{$type} {
+    color: $color !important;
+  }
+}
+
+@each $type, $size in $font-sz {
+  .fz-#{$type} {
+    size: $size !important;
+  }
+}

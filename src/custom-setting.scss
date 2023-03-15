@@ -1,0 +1,75 @@
+/** 基礎功能色設定 start */
+// gray-color-variables start
+$color-white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #000;
+$color-black: #000;
+// gray-color-variables end
+
+// scss-docs-start gray-colors-map
+$color-grays: (
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900,
+);
+// scss-docs-end gray-colors-map
+
+// 主要色
+$primary-color: #533B4D;
+// 主要色變形
+$primary-variant-color: #eff8ff;
+// 次要色
+$secondary-color: #C1ABA6;
+// 次要色變形
+$secondary-variant-color: #e6f3f7;
+// 第三色
+$third-color: #E3D3E4;
+// 第三色變形
+$third-variant-color: white;
+// danger
+$danger-color: #C90000;
+// success
+$success-color: #54be9f;
+// warn
+$warn-color: #fbc149;
+// disabled
+$disabled-color: (
+  // 字色
+  form-text: map-get($color-grays, "400"),
+  // 勾勾顏色
+  form-checkbox-check: map-get($color-grays, "600"),
+  // 圈圈顏色
+  form-radio-dot: map-get($color-grays, "600"),
+  // 按鈕字色+框框
+  button: map-get($color-grays, "400")
+);
+/** 基礎功能色設定 end */
+
+$default-radius: 6px;
+
+/** 基礎元件設定 */
+$font-sz: (
+  xl: 24px,
+  lg: 20px,
+  md: 16px,
+  sm: 14px,
+  xs: 10px,
+);
+
+$font-weight: (
+  fatty: 600,
+  normal: normal,
+);
