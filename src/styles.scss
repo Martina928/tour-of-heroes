@@ -32,6 +32,6 @@ $color in $color-grays {
 
 @each $type, $size in $font-sz {
   .fz-#{$type} {
-    size: $size !important;
+    font-size: $size !important;
   }
 }

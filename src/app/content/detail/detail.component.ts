@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-detail',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent {
+  @Input() name!: string;
+  @Input() id!: string;
+
+  constructor(
+    private location: Location,
+
+  ) {}
+
+  goBack() {
+    this.location.back();
+  }
 
 }
