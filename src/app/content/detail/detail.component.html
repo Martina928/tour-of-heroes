@@ -1,10 +1,10 @@
 <div class="wrapper">
   <div class="title position-relative">
-    <h1 class="text-primary text-center mb-4">{{name}} Details</h1>
+    <h1 class="text-primary text-center mb-4">{{ hero?.name }} Details</h1>
     <p class="go-back position-absolute top-50 end-0 translate-middle-y fz-sm" (click)="goBack()">&gt; Go Back</p>
   </div>
   
-  <p>ID: {{id}}</p>
+  <p>ID: {{ hero?.id }}</p>
   <form>
     <div class="form-item col-md-10 d-flex align-items-center">
       <label class="me-2">Hero name:</label>
