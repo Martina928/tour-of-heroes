@@ -1,10 +1,10 @@
-<div class="wrapper mt-5">
+<div class="wrapper mt-5" *ngIf="msgService.msgLog.length">
   <div class="title position-relative">
     <h1 class="text-primary text-center mb-4">Messages</h1>
-    <button class="btn btn-outline-primary position-absolute top-50 end-0 translate-middle-y" (click)="onClearClick()">Clear Messages</button>
+    <button class="btn btn-outline-primary position-absolute top-50 end-0 translate-middle-y" (click)="msgService.clear()">Clear Messages</button>
   </div>
 
   <section>
-    <p *ngFor="let msg of msgLog">{{msg}}</p>
+    <p *ngFor="let msg of msgService.msgLog">{{msg}}</p>
   </section>
 </div>

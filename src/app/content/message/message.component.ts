@@ -1,21 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'src/app/core/service/message.service';
 
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss']
 })
-export class MessageComponent {
-  msgLog = [
-    'this is msg',
-    'this is msg',
-    'this is msg',
-    'this is msg',
-    'this is msg', 
-  ];
+export class MessageComponent implements OnInit{
+  
+  constructor(public msgService: MessageService) {}
 
-  onClearClick() {
-    this.msgLog = [];
+  ngOnInit(): void {
   }
 
 }
