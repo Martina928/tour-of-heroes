@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROUTING_PATH } from 'src/app/core/const/routing-path.const';
 import { Hero } from 'src/app/core/interface/hero.interface';
@@ -12,16 +13,34 @@ import { MessageService } from 'src/app/core/service/message.service';
   styleUrls: ['./heroes.component.scss']
 })
 export class HeroesComponent implements OnInit {
+  heroForm!: FormGroup;
+  errMsg!: string;
+  
   heroList: Hero[] = [];
 
   constructor(
     private router: Router,
     private heroService: HeroService,
-    private msgService: MessageService
+    private msgService: MessageService,
   ) {}
 
   ngOnInit(): void {
+    this.heroForm = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.minLength(1)])
+    })
+
     this.getHeroList();
+  }
+
+  onSubmit() {
+    this.heroForm.markAsDirty()
+    if(this.heroForm.invalid) { 
+      this.errMsg = 'Please input validated text.'
+      return; 
+    }
+
+    console.log(this.heroForm.value)
+    this.heroForm.get('name')?.setValue('')
   }
 
   onHeroClick(heroId: number) {

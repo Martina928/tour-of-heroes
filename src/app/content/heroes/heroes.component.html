@@ -3,10 +3,11 @@
 
   <div class="row">
     <h4 class="text-primary my-4">Add Hero</h4>
-    <form class="d-flex">
-      <input class="form-control me-2" type="text" placeholder="Enter hero name...">
+    <form class="d-flex" [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+      <input class="form-control me-2" type="text" placeholder="Enter hero name..." formControlName="name">
       <button class="btn btn-outline-primary" type="submit">Add</button>
     </form>
+    <p class="errMsg ms-1 text-danger fz-xs font-italic" *ngIf="errMsg">{{errMsg}}</p>
   </div>
   <section>
     <h4 class="text-primary my-4">Hero List</h4>

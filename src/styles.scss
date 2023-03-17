@@ -35,3 +35,9 @@ $color in $color-grays {
     font-size: $size !important;
   }
 }
+
+.form-control {
+  &:focus{
+    box-shadow: none;
+  }
+}
