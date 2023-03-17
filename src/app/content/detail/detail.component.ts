@@ -18,7 +18,7 @@ export class DetailComponent implements OnInit {
     private route: ActivatedRoute,
   ) {
     const heroId = this.route.snapshot.queryParams['id'];
-    this.hero = this.heroList.find((hero) => hero.id === +heroId)
+    this.hero = this.heroList.find((hero) => hero.id === heroId)
     console.log(this.hero)
   }
 

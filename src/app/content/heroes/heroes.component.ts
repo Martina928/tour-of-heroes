@@ -50,12 +50,12 @@ export class HeroesComponent implements OnInit {
     }) 
   }
 
-  onHeroClick(heroId: number) {
+  onHeroClick(heroId: string) {
     this.msgService.addMsg(`My Heroes: Selected hero, id: ${heroId}.`)
     this.router.navigate([ROUTING_PATH.DETAIL], { queryParams: { id: heroId } })
   }
 
-  onDelete(heroId: number) {
+  onDelete(heroId: string) {
     this.heroList = this.heroList.filter((hero) => hero.id !== heroId)
   }
 

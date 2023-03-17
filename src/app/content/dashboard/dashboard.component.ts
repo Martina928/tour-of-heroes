@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
     this.displayList = this.heroList.slice(0, 4);
   }
 
-  onHeroClick(heroId: number) {
+  onHeroClick(heroId: string) {
     this.router.navigate([ROUTING_PATH.DETAIL], { queryParams: { id: heroId } })
   }
 
