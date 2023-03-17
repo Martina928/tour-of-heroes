@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 import { ROUTING_PATH } from 'src/app/core/const/routing-path.const';
 import { Hero } from 'src/app/core/interface/hero.interface';
 import { heroListMock } from 'src/app/core/mock/mock';
@@ -32,6 +33,7 @@ export class HeroesComponent implements OnInit {
     this.getHeroList();
   }
 
+  /** Add new hero */
   onSubmit() {
     this.heroForm.markAsDirty()
     if(this.heroForm.invalid) { 
@@ -39,8 +41,13 @@ export class HeroesComponent implements OnInit {
       return; 
     }
 
-    console.log(this.heroForm.value)
-    this.heroForm.get('name')?.setValue('')
+    const params = this.heroForm.value
+    this.heroForm.get('name')?.setValue('');
+    this.heroService.addHero(params).subscribe(() => {
+      this.msgService.addMsg(`Service info: Added hero, name: ${params.name}.`);
+       window.alert('Success!') ;
+      this.getHeroList();
+    }) 
   }
 
   onHeroClick(heroId: number) {
