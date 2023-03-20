@@ -11,6 +11,7 @@ import { MessageService } from './message.service';
 })
 export class HeroService {
   db: string = API.HOST + API.HEROES;
+  selectedHero!: Hero;
 
   constructor(
     private msgService: MessageService,
@@ -45,5 +46,11 @@ export class HeroService {
     const url = this.db + '/' + params.id + API.JSON;
     this.msgService.addMsg(`Service info: Deleted hero, name: ${params.name}.`);
     return this.http.delete(url);
+  }
+
+  editHero(params: any, id?: string) {
+    const url = this.db + '/' + id + API.JSON;
+    this.msgService.addMsg(`Service info: Edited hero, name: ${params.name}.`);
+    return this.http.patch(url, params)
   }
 }

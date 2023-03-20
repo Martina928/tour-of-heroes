@@ -51,6 +51,7 @@ export class HeroesComponent implements OnInit {
   }
 
   onHeroClick(hero: Hero) {
+    this.heroService.selectedHero = hero;
     this.msgService.addMsg(`My Heroes: Selected hero, id: ${hero.id}.`)
     this.router.navigate([ROUTING_PATH.DETAIL], { queryParams: { id: hero.id } })
   }
