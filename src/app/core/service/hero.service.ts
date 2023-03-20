@@ -18,18 +18,14 @@ export class HeroService {
   ) { }
 
   // get list -> async
-  getHeroList(): Observable<any> {
+  getHeroList(): Observable<Hero[]> {
     return this.http.get(this.url).pipe(
-      map((res) => {
-        console.log(res)
-
+      map((res: any) => {
         const list: Hero[] = [];
         for(const key in res) {
-        console.log(res)
-            // list.push({id: key, ...res[key]})
-          
-          console.log(key)
+          list.push({id: key, name: res[key].name})
         }
+        this.msgService.addMsg('Service info: Fetched heroes!')
         return list;
       })
     )
@@ -39,6 +35,7 @@ export class HeroService {
   }
 
   addHero(params: any) {
+    this.msgService.addMsg(`Service info: Added hero, name: ${params.name}.`);
     return this.http.post(this.url, params);
   }
 }

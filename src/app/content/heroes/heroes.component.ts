@@ -42,12 +42,12 @@ export class HeroesComponent implements OnInit {
     }
 
     const params = this.heroForm.value
-    this.heroForm.get('name')?.setValue('');
     this.heroService.addHero(params).subscribe(() => {
-      this.msgService.addMsg(`Service info: Added hero, name: ${params.name}.`);
        window.alert('Success!') ;
       this.getHeroList();
     }) 
+
+    this.heroForm.get('name')?.setValue('');
   }
 
   onHeroClick(heroId: string) {
