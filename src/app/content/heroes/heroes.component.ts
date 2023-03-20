@@ -43,20 +43,22 @@ export class HeroesComponent implements OnInit {
 
     const params = this.heroForm.value
     this.heroService.addHero(params).subscribe(() => {
-       window.alert('Success!') ;
+      window.alert('Success!') ;
       this.getHeroList();
     }) 
 
     this.heroForm.get('name')?.setValue('');
   }
 
-  onHeroClick(heroId: string) {
-    this.msgService.addMsg(`My Heroes: Selected hero, id: ${heroId}.`)
-    this.router.navigate([ROUTING_PATH.DETAIL], { queryParams: { id: heroId } })
+  onHeroClick(hero: Hero) {
+    this.msgService.addMsg(`My Heroes: Selected hero, id: ${hero.id}.`)
+    this.router.navigate([ROUTING_PATH.DETAIL], { queryParams: { id: hero.id } })
   }
 
-  onDelete(heroId: string) {
-    this.heroList = this.heroList.filter((hero) => hero.id !== heroId)
+  onDelete(hero: Hero) {
+    this.heroService.deleteHero(hero).subscribe(() => { 
+      this.getHeroList();
+    })
   }
 
   private getHeroList() {

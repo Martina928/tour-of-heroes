@@ -12,7 +12,7 @@
   <section>
     <h4 class="text-primary my-4">Hero List</h4>
     <div class="col-md-4 col-12">
-      <div class="card my-2" *ngFor="let hero of heroList; let i = index" (click)="onHeroClick(hero.id)">
+      <div class="card my-2" *ngFor="let hero of heroList; let i = index" (click)="onHeroClick(hero)">
         <div class="row g-0">
           <div class="col-2 d-flex align-items-center justify-content-center card-head">
             <h5 class="m-0 text-white">{{i + 1}}</h5>
@@ -20,7 +20,7 @@
           <div class="col-10">
             <div class="card-body d-flex justify-content-between align-items-center">
               <p class="card-text m-0">{{hero.name}}</p>
-              <button class="btn btn-primary" (click)="onDelete(hero.id)">X</button>
+              <button class="btn btn-primary" (click)="onDelete(hero)">X</button>
             </div>
           </div>
         </div>
