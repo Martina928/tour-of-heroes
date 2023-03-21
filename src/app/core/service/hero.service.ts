@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { map, Observable, of } from 'rxjs';
 import { API } from '../const/global-const.const';
+import { ROUTING_PATH } from '../const/routing-path.const';
 import { Hero } from '../interface/hero.interface';
 import { heroListMock } from '../mock/mock';
 import { MessageService } from './message.service';
@@ -14,10 +16,19 @@ export class HeroService {
   selectedHero!: Hero;
 
   constructor(
+    private router: Router,
     private msgService: MessageService,
     private http: HttpClient
   ) { }
 
+  /** navigate  hero to edit page */
+  navigateHero(hero: Hero) {
+    this.selectedHero = hero;
+    this.msgService.addMsg(`My Heroes: Selected hero, id: ${hero.id}.`);
+    this.router.navigate([ROUTING_PATH.DETAIL], { queryParams: { id: hero.id } });
+  }
+
+  /** GET */
   // get list -> async
   getHeroList(): Observable<Hero[]> {
     const url = this.db + API.JSON;
@@ -36,19 +47,22 @@ export class HeroService {
     // return heroList;
   }
 
-  addHero(params: any) {
+  /** POST */
+  addHero(params: any): Observable<any> {
     const url = this.db + API.JSON;
     this.msgService.addMsg(`Service info: Added hero, name: ${params.name}.`);
     return this.http.post(url, params);
   }
 
-  deleteHero(params: any) {
+  /** DELETE */
+  deleteHero(params: any): Observable<any> {
     const url = this.db + '/' + params.id + API.JSON;
     this.msgService.addMsg(`Service info: Deleted hero, name: ${params.name}.`);
     return this.http.delete(url);
   }
 
-  editHero(params: any, id?: string) {
+  /** PATCH */
+  editHero(params: any, id?: string): Observable<any> {
     const url = this.db + '/' + id + API.JSON;
     this.msgService.addMsg(`Service info: Edited hero, name: ${params.name}.`);
     return this.http.patch(url, params)

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs';
-import { ROUTING_PATH } from 'src/app/core/const/routing-path.const';
 import { Hero } from 'src/app/core/interface/hero.interface';
 import { heroListMock } from 'src/app/core/mock/mock';
+import { HeroService } from 'src/app/core/service/hero.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,21 +9,26 @@ import { heroListMock } from 'src/app/core/mock/mock';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  heroList: Hero[] = heroListMock;
   displayList: Hero[] = [];
   searchList: Hero[] = [];
   keyWord: string = '';
 
   constructor(
-    private router: Router
+    private heroService: HeroService,
   ) { }
 
   ngOnInit(): void {
-    this.displayList = this.heroList.slice(0, 4);
+    this.getHeroList();
   }
 
-  onHeroClick(heroId: string) {
-    this.router.navigate([ROUTING_PATH.DETAIL], { queryParams: { id: heroId } })
+  onHeroClick(hero: Hero) {
+    this.heroService.navigateHero(hero);
+  }
+
+  private getHeroList() {
+    this.heroService.getHeroList().subscribe(data => {
+      this.displayList = data.slice(0, 4);
+    });
   }
 
 }

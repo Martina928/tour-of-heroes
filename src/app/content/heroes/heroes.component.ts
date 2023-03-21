@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { tap } from 'rxjs';
-import { ROUTING_PATH } from 'src/app/core/const/routing-path.const';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Hero } from 'src/app/core/interface/hero.interface';
 import { heroListMock } from 'src/app/core/mock/mock';
 import { HeroService } from 'src/app/core/service/hero.service';
-import { MessageService } from 'src/app/core/service/message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -20,9 +16,7 @@ export class HeroesComponent implements OnInit {
   heroList: Hero[] = [];
 
   constructor(
-    private router: Router,
     private heroService: HeroService,
-    private msgService: MessageService,
   ) {}
 
   ngOnInit(): void {
@@ -51,9 +45,7 @@ export class HeroesComponent implements OnInit {
   }
 
   onHeroClick(hero: Hero) {
-    this.heroService.selectedHero = hero;
-    this.msgService.addMsg(`My Heroes: Selected hero, id: ${hero.id}.`)
-    this.router.navigate([ROUTING_PATH.DETAIL], { queryParams: { id: hero.id } })
+    this.heroService.navigateHero(hero);
   }
 
   onDelete(hero: Hero, event: MouseEvent) {
@@ -61,7 +53,6 @@ export class HeroesComponent implements OnInit {
     this.heroService.deleteHero(hero).subscribe(() => { 
       this.getHeroList();
     })
-    
   }
 
   private getHeroList() {
