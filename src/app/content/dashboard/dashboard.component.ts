@@ -25,10 +25,21 @@ export class DashboardComponent implements OnInit {
     this.heroService.navigateHero(hero);
   }
 
+  onSearch() {
+    if(this.keyWord === '') { 
+      this.searchList = [];
+      return ; 
+    }
+    this.heroService.getHeroList().subscribe(data => {
+      this.searchList = data.filter(item => {
+        return item.name.replace(/\s/g, '').toLowerCase().includes(this.keyWord.replace(/\s/g, '').toLowerCase());
+      })
+    });
+  }
+
   private getHeroList() {
     this.heroService.getHeroList().subscribe(data => {
       this.displayList = data.slice(0, 4);
     });
   }
-
 }
