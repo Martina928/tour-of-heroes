@@ -45,8 +45,8 @@ export class DetailComponent implements OnInit {
     const params = this.editForm.value;
     this.heroService.editHero(params, id).subscribe(() => {
       window.alert('Success!');
+      this.hero.name = params.name;
     })
-
   }
 
 }
