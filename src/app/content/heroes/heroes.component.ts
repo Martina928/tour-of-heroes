@@ -56,10 +56,12 @@ export class HeroesComponent implements OnInit {
     this.router.navigate([ROUTING_PATH.DETAIL], { queryParams: { id: hero.id } })
   }
 
-  onDelete(hero: Hero) {
+  onDelete(hero: Hero, event: MouseEvent) {
+    event.stopPropagation();
     this.heroService.deleteHero(hero).subscribe(() => { 
       this.getHeroList();
     })
+    
   }
 
   private getHeroList() {
